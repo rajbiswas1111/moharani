@@ -1,6 +1,6 @@
 // Admin initialization
 document.addEventListener('DOMContentLoaded', function() {
-    checkAdminAuth();
+    // checkAdminAuth();
     loadAdminData();
     setupAdminEventListeners();
 });
