@@ -1,219 +1,65 @@
-// Admin initialization
-document.addEventListener('DOMContentLoaded', function() {
-    // checkAdminAuth();
-    loadAdminData();
-    setupAdminEventListeners();
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initialize Products (This displays your sarees)
+    displayProducts();
+
+    // 2. Setup Login Form (Only if we are on the login page)
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLogin);
+    }
 });
 
-// Admin authentication
-// function checkAdminAuth() {
-//     const adminData = JSON.parse(localStorage.getItem('adminData'));
-//     if (!adminData || !adminData.authenticated) {
-//         window.location.href = 'login.html';
-//     }
-// }
+// Products Data
+const products = [
+    {
+        id: 1,
+        name: "Exquisite Banarasi Silk",
+        price: 15999,
+        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80",
+        category: "silk"
+    },
+    {
+        id: 2,
+        name: "Designer Chiffon Saree",
+        price: 8499,
+        image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80",
+        category: "chiffon"
+    }
+];
 
-// Load admin dashboard data
-async function loadAdminData() {
-    const data = await fetch('data.json').then(r => r.json());
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-    // Update stats
-    document.getElementById('totalProducts').textContent = data.products.length;
-    document.getElementById('totalOrders').textContent = orders.length;
-    document.getElementById('totalRevenue').textContent = `₹${orders.reduce((sum, order) => sum + order.total, 0).toLocaleString()}`;
-    document.getElementById('totalCustomers').textContent = new Set(orders.map(o => o.customer.email)).size;
-    
-    displayAdminProducts(data.products);
-    displayAdminOrders(orders);
-}
+// Display Products function
+function displayProducts() {
+    const productGrid = document.querySelector('.product-grid');
+    if (!productGrid) return; // Exit if not on a page with a product grid
 
-// Display admin products table
-function displayAdminProducts(products = []) {
-    const tbody = document.getElementById('adminProductsTable');
-    if (!tbody) return;
-    
-    tbody.innerHTML = products.map(product => `
-        <tr>
-            <td><img src="${product.image}" alt="${product.name}" class="admin-product-img"></td>
-            <td>${product.name}</td>
-            <td>₹${product.price.toLocaleString()}</td>
-            <td>${product.stock}</td>
-            <td><span class="badge">${product.category}</span></td>
-            <td>
-                <button class="btn-small btn-warning" onclick="editProduct(${product.id})">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <button class="btn-small btn-danger" onclick="deleteProduct(${product.id})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        </tr>
+    productGrid.innerHTML = products.map(product => `
+        <div class="product-card">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                <p class="price">₹${product.price.toLocaleString()}</p>
+                <button class="btn btn-primary">View Details</button>
+            </div>
+        </div>
     `).join('');
 }
 
-// Display admin orders table
-function displayAdminOrders(orders = []) {
-    const tbody = document.getElementById('adminOrdersTable');
-    if (!tbody) return;
-    
-    tbody.innerHTML = orders.map(order => `
-        <tr>
-            <td>#${order.id.toString().slice(-6)}</td>
-            <td>${order.customer.name}<br><small>${order.customer.phone}</small></td>
-            <td>₹${order.total.toLocaleString()}</td>
-            <td>
-                <span class="status-badge status-${order.status}">
-                    ${order.status.toUpperCase()}
-                </span>
-            </td>
-            <td>${new Date(order.date).toLocaleDateString()}</td>
-            <td>
-                <button class="btn-small btn-success" onclick="updateOrderStatus(${order.id}, 'shipped')">
-                    Ship
-                </button>
-                <button class="btn-small btn-primary" onclick="viewOrderDetails(${order.id})">
-                    View
-                </button>
-            </td>
-        </tr>
-    `).join('');
-}
-
-// Admin section navigation
-function showAdminSection(sectionId) {
-    document.querySelectorAll('.admin-section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    
-    document.getElementById(sectionId).classList.add('active');
-    event.target.classList.add('active');
-}
-
-// Product CRUD operations
-function openAddProductModal() {
-    document.getElementById('addProductModal').style.display = 'block';
-}
-
-function closeAddProductModal() {
-    document.getElementById('addProductModal').style.display = 'none';
-    document.getElementById('addProductForm').reset();
-}
-
-document.getElementById('addProductForm').addEventListener('submit', async function(e) {
+// Handle Login (Moves the auth logic here so it only runs when clicking 'Login')
+function handleLogin(e) {
     e.preventDefault();
-    
-    const newProduct = {
-        id: Date.now(),
-        name: document.getElementById('productName').value,
-        price: parseInt(document.getElementById('productPrice').value),
-        stock: parseInt(document.getElementById('productStock').value),
-        category: document.getElementById('productCategory').value,
-        description: document.getElementById('productDescription').value,
-        image: document.getElementById('productImage').value
-    };
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-    // Update data.json (in real app, this would be a POST to backend)
-    const response = await fetch('data.json');
-    const data = await response.json();
-    data.products.push(newProduct);
-    
-    // Update local products array
-    products.push(newProduct);
-    localStorage.setItem('products', JSON.stringify(products));
-    
-    displayAdminProducts(products);
-    closeAddProductModal();
-    showNotification('Product added successfully!', 'success');
-});
-
-async function deleteProduct(productId) {
-    if (confirm('Are you sure you want to delete this product?')) {
-        products = products.filter(p => p.id !== productId);
-        localStorage.setItem('products', JSON.stringify(products));
-        loadAdminData();
-        showNotification('Product deleted successfully!', 'success');
+    // Simple admin check
+    if (email === 'admin@moharani.com' && password === 'admin123') {
+        localStorage.setItem('adminData', JSON.stringify({
+            email: email,
+            authenticated: true,
+            loginTime: new Date().getTime()
+        }));
+        alert('Login Successful!');
+        window.location.href = 'index.html'; 
+    } else {
+        alert('Invalid credentials!');
     }
-}
-
-function editProduct(productId) {
-    const product = products.find(p => p.id === productId);
-    if (product) {
-        // Populate modal with product data for editing
-        document.getElementById('productName').value = product.name;
-        document.getElementById('productPrice').value = product.price;
-        document.getElementById('productStock').value = product.stock;
-        document.getElementById('productCategory').value = product.category;
-        document.getElementById('productDescription').value = product.description;
-        document.getElementById('productImage').value = product.image;
-        
-        // Change form to edit mode
-        const form = document.getElementById('addProductForm');
-        form.onsubmit = async function(e) {
-            e.preventDefault();
-            products = products.map(p => 
-                p.id === productId ? { ...p, 
-                    name: document.getElementById('productName').value,
-                    price: parseInt(document.getElementById('productPrice').value),
-                    stock: parseInt(document.getElementById('productStock').value),
-                    category: document.getElementById('productCategory').value,
-                    description: document.getElementById('productDescription').value,
-                    image: document.getElementById('productImage').value
-                } : p
-            );
-            localStorage.setItem('products', JSON.stringify(products));
-            displayAdminProducts(products);
-            closeAddProductModal();
-            showNotification('Product updated successfully!', 'success');
-        };
-        
-        openAddProductModal();
-    }
-}
-
-// Order management
-function updateOrderStatus(orderId, status) {
-    orders = orders.map(order => 
-        order.id === orderId ? { ...order, status } : order
-    );
-    localStorage.setItem('orders', JSON.stringify(orders));
-    displayAdminOrders(orders);
-    showNotification(`Order status updated to ${status}!`, 'success');
-}
-
-function viewOrderDetails(orderId) {
-    const order = orders.find(o => o.id === orderId);
-    if (order) {
-        alert(`Order #${order.id}\nCustomer: ${order.customer.name}\nTotal: ₹${order.total.toLocaleString()}\nStatus: ${order.status}`);
-    }
-}
-
-// Admin event listeners
-function setupAdminEventListeners() {
-    // Modal close on outside click
-    window.onclick = function(event) {
-        const modal = document.getElementById('addProductModal');
-        if (event.target === modal) {
-            closeAddProductModal();
-        }
-    }
-}
-
-// Admin notification (same as main script)
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-        ${message}
-    `;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
 }
