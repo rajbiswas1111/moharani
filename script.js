@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Admin authentication
-function checkAdminAuth() {
-    const adminData = JSON.parse(localStorage.getItem('adminData'));
-    if (!adminData || !adminData.authenticated) {
-        window.location.href = 'login.html';
-    }
-}
+// function checkAdminAuth() {
+//     const adminData = JSON.parse(localStorage.getItem('adminData'));
+//     if (!adminData || !adminData.authenticated) {
+//         window.location.href = 'login.html';
+//     }
+// }
 
 // Load admin dashboard data
 async function loadAdminData() {
