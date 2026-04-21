@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - SareeSilk</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header class="header">
+        <!-- Copy header from index.html -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2><i class="fas fa-swatch-book"></i> SareeSilk</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="products.html" class="nav-link active">Shop</a></li>
+                    <li><a href="cart.html" class="nav-link" id="cartLink">
+                        <i class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)
+                    </a></li>
+                    <li><a href="login.html" class="nav-link">Login</a></li>
+                    <li><a href="admin.html" class="nav-link">Admin</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Products Page -->
+    <section class="products-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Our Collection</h1>
+                <div class="filters">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Silk">Silk</option>
+                        <option value="Cotton">Cotton</option>
+                        <option value="Georgette">Georgette</option>
+                        <option value="Chiffon">Chiffon</option>
+                        <option value="Tussar">Tussar</option>
+                    </select>
+                    <input type="number" id="priceFilter" placeholder="Max Price" min="0">
+                    <button onclick="applyFilters()">Filter</button>
+                </div>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <!-- Copy footer from index.html -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
