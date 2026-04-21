@@ -1,0 +1,62 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Banarasi Silk Saree - Red",
+      "price": 4500,
+      "image": "https://images.unsplash.com/photo-1608251690995-4e59df1c38bb?w=400&h=500&fit=crop",
+      "category": "Silk",
+      "description": "Premium Banarasi silk saree with intricate gold zari work. Perfect for weddings and festive occasions.",
+      "stock": 10
+    },
+    {
+      "id": 2,
+      "name": "Kanchipuram Silk Saree - Green",
+      "price": 5200,
+      "image": "https://images.unsplash.com/photo-1581236009476-7a8cae9a2c97?w=400&h=500&fit=crop",
+      "category": "Silk",
+      "description": "Authentic Kanchipuram silk saree with traditional temple border design.",
+      "stock": 8
+    },
+    {
+      "id": 3,
+      "name": "Cotton Kanjivaram Saree - Blue",
+      "price": 2800,
+      "image": "https://images.unsplash.com/photo-1608251690995-4e59df1c38bb?w=400&h=500&fit=crop",
+      "category": "Cotton",
+      "description": "Comfortable cotton Kanjivaram saree perfect for daily wear with elegant motifs.",
+      "stock": 15
+    },
+    {
+      "id": 4,
+      "name": "Georgette Printed Saree - Pink",
+      "price": 2200,
+      "image": "https://images.unsplash.com/photo-1581236009476-7a8cae9a2c97?w=400&h=500&fit=crop",
+      "category": "Georgette",
+      "description": "Lightweight georgette saree with beautiful floral prints, ideal for parties.",
+      "stock": 12
+    },
+    {
+      "id": 5,
+      "name": "Chiffon Embroidered Saree - Purple",
+      "price": 3800,
+      "image": "https://images.unsplash.com/photo-1608251690995-4e59df1c38bb?w=400&h=500&fit=crop",
+      "category": "Chiffon",
+      "description": "Elegant chiffon saree with heavy embroidery work on pallu and border.",
+      "stock": 6
+    },
+    {
+      "id": 6,
+      "name": "Tussar Silk Saree - Mustard",
+      "price": 3200,
+      "image": "https://images.unsplash.com/photo-1581236009476-7a8cae9a2c97?w=400&h=500&fit=crop",
+      "category": "Tussar",
+      "description": "Natural tussar silk saree with minimalistic handwoven patterns.",
+      "stock": 9
+    }
+  ],
+  "admin": {
+    "username": "admin",
+    "password": "admin123"
+  }
+}
