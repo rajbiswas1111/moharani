@@ -1,0 +1,14 @@
+{
+  "name": "the-moharani",
+  "version": "1.0.0",
+  "description": "Full functional saree e-commerce website with storefront, checkout, login, admin dashboard, and backend.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "migrate:mongo": "node scripts/migrate-to-mongo.js",
+    "backup": "node scripts/backup.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.16.0"
+  }
+}

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tax Invoice | The Moharani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    /* Dedicated Invoice Styling */
+    .invoice-body {
+      background: #f0f4f9;
+      color: #10233f;
+      padding: 30px 16px;
+      font-family: "Manrope", sans-serif;
+    }
+    .invoice-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(16, 35, 63, 0.08);
+      border: 1px solid rgba(35, 84, 180, 0.12);
+      overflow: hidden;
+    }
+    .invoice-actions-bar {
+      max-width: 800px;
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .invoice-card {
+      padding: 40px;
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #701625;
+      padding-bottom: 24px;
+      gap: 20px;
+    }
+    .invoice-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .invoice-brand img {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 2px solid #d4af37;
+    }
+    .invoice-brand h1 {
+      font-family: "Cinzel", serif;
+      font-size: 1.6rem;
+      margin: 0;
+      color: #701625;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .invoice-brand p {
+      margin: 2px 0 0 0;
+      font-size: 0.8rem;
+      color: #6b5a5e;
+    }
+    .invoice-title-block {
+      text-align: right;
+    }
+    .invoice-title-block h2 {
+      font-family: "Cinzel", serif;
+      font-size: 1.4rem;
+      margin: 0;
+      color: #701625;
+      letter-spacing: 0.05em;
+    }
+    .invoice-badge {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 3px 10px;
+      background: rgba(212, 175, 55, 0.18);
+      color: #8c5d0a;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .invoice-meta-grid {
+      display: grid;
+      grid-cols: 1;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+      padding: 20px;
+      background: #faf6f0;
+      border-radius: 12px;
+      border: 1px solid #ede4d3;
+    }
+    .meta-box h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b5a5e;
+      margin: 0 0 8px 0;
+      font-weight: 700;
+    }
+    .meta-box p {
+      margin: 2px 0;
+      font-size: 0.88rem;
+      color: #1a1012;
+      line-height: 1.4;
+    }
+    .meta-box strong {
+      color: #701625;
+    }
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+    }
+    .invoice-table th {
+      background: #701625;
+      color: #ffffff;
+      text-align: left;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .invoice-table th:last-child,
+    .invoice-table td:last-child {
+      text-align: right;
+    }
+    .invoice-table td {
+      padding: 14px;
+      border-bottom: 1px solid #ede4d3;
+      font-size: 0.88rem;
+      color: #1a1012;
+      vertical-align: top;
+    }
+    .invoice-table tbody tr:nth-child(even) {
+      background: #fdfbf7;
+    }
+    .invoice-calc-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    .calc-table {
+      width: 320px;
+      font-size: 0.88rem;
+    }
+    .calc-table div {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      color: #6b5a5e;
+    }
+    .calc-table div.grand-total {
+      border-top: 2px solid #701625;
+      margin-top: 8px;
+      padding-top: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #701625;
+      font-family: "Cinzel", serif;
+    }
+    .amount-words-box {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: #fdfbf5;
+      border: 1px dashed #d4af37;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: #7c5806;
+    }
+    .invoice-footer {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid #e2ecf9;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      font-size: 0.8rem;
+      color: #556983;
+    }
+    .auth-signature {
+      text-align: center;
+      min-width: 160px;
+    }
+    .signature-line {
+      border-top: 1px solid #10233f;
+      margin-top: 40px;
+      padding-top: 4px;
+      font-weight: 700;
+      color: #10233f;
+    }
+    /* Media Print Optimization */
+    @media print {
+      body, .invoice-body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .invoice-actions-bar,
+      .whatsapp-float,
+      .site-header,
+      .site-footer {
+        display: none !important;
+      }
+      .invoice-container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+      }
+      .invoice-card {
+        padding: 20px !important;
+      }
+      .invoice-table th {
+        background: #701625 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body class="invoice-body">
+  <!-- Screen Navigation / Print Bar -->
+  <div class="invoice-actions-bar">
+    <a href="./index.html" class="small-btn">← Back to Store</a>
+    <div style="display: flex; gap: 8px;">
+      <button onclick="shareOnWhatsApp()" class="btn" style="background:#25d366; color:#fff; padding: 8px 16px; border-radius: 10px; font-weight:700; font-size:0.85rem; border:none; cursor:pointer;">
+        💬 Share on WhatsApp
+      </button>
+      <button onclick="window.print()" class="btn btn-primary" style="padding: 8px 20px; font-size:0.85rem; border-radius: 10px; cursor:pointer;">
+        🖨️ Print / Save as PDF
+      </button>
+    </div>
+  </div>
+
+  <div class="invoice-container">
+    <div class="invoice-card" id="invoiceMount">
+      <div style="text-align:center; padding: 40px;">
+        <p>Loading tax invoice details...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="./catalog-data.js"></script>
+  <script src="./app.js"></script>
+  <script>
+    function numToWords(num) {
+      const a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+      const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+      const n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+      if (!n) return '';
+      let str = '';
+      str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+      str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+      str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+      str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+      str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
+      return str.trim();
+    }
+
+    async function loadInvoiceData() {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("id");
+      const mount = document.getElementById("invoiceMount");
+
+      if (!orderId) {
+        mount.innerHTML = `
+          <div style="text-align:center; padding: 40px;">
+            <h2 style="color:#d9534f; font-family:'Cinzel',serif;">Order ID Missing</h2>
+            <p>Please provide a valid Order ID in the URL, e.g. ?id=ORD-12345</p>
+            <a href="./index.html" class="btn btn-primary" style="margin-top:16px; display:inline-block;">Return to Home</a>
+          </div>
+        `;
+        return;
+      }
+
+      let order = null;
+      try {
+        // Try server orders API if logged in or admin
+        if (state.auth?.token) {
+          try {
+            if (state.auth.user?.role === "admin") {
+              const summary = await api("/api/admin/summary");
+              order = (summary.orders || []).find(o => o.id === orderId);
+            } else {
+              const myOrders = await api("/api/orders/my");
+              order = (myOrders.orders || []).find(o => o.id === orderId);
+            }
+          } catch (_) {}
+        }
+      } catch (_) {}
+
+      // Fallback to local store or stored store.json if not resolved
+      if (!order) {
+        const localOrders = loadLocalOrders();
+        order = localOrders.find(o => o.id === orderId);
+      }
+
+      // If still not found, fetch from /api/products or public store
+      if (!order) {
+        try {
+          const res = await fetch("./data/store.json");
+          const s = await res.json();
+          order = (s.orders || []).find(o => o.id === orderId);
+        } catch (_) {}
+      }
+
+      if (!order) {
+        mount.innerHTML = `
+          <div style="text-align:center; padding: 40px;">
+            <h2 style="color:#d9534f; font-family:'Cinzel',serif;">Invoice Not Found</h2>
+            <p>Could not locate order details for <strong>${orderId}</strong>.</p>
+            <a href="./index.html" class="btn btn-primary" style="margin-top:16px; display:inline-block;">Return to Home</a>
+          </div>
+        `;
+        return;
+      }
+
+      renderInvoice(order);
+    }
+
+    function renderInvoice(order) {
+      const mount = document.getElementById("invoiceMount");
+      const subtotal = order.subtotal || 0;
+      const cgst = Math.round(subtotal * 0.025);
+      const sgst = Math.round(subtotal * 0.025);
+      const shipping = order.shipping || 0;
+      const total = order.total || 0;
+      const orderDate = new Date(order.createdAt || Date.now()).toLocaleDateString("en-IN", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      const itemsRows = (order.items || []).map((item, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td>
+            <strong>${item.name}</strong>
+            <div style="font-size:0.75rem; color:#556983;">SKU: ${item.productId || 'TM-SAREE'}</div>
+          </td>
+          <td style="text-align:center;">${item.quantity || 1}</td>
+          <td style="text-align:right;">₹${(item.price || 0).toLocaleString('en-IN')}</td>
+          <td style="text-align:right; font-weight:700;">₹${(item.lineTotal || (item.price * (item.quantity || 1))).toLocaleString('en-IN')}</td>
+        </tr>
+      `).join("");
+
+      mount.innerHTML = `
+        <header class="invoice-header">
+          <div class="invoice-brand">
+            <img src="./logo.png" alt="The Moharani" />
+            <div>
+              <h1>THE MOHARANI</h1>
+              <p>Premium Saree Boutique • Handcrafted Indian Heritage</p>
+              <p style="font-size:0.75rem; color:#556983;">Support: sbfashion4553@gmail.com | WhatsApp: +91 8945998947</p>
+            </div>
+          </div>
+          <div class="invoice-title-block">
+            <h2>TAX INVOICE</h2>
+            <div class="invoice-badge">GST BILL / RECEIPT</div>
+            <p style="margin: 6px 0 0 0; font-size:0.8rem; color:#556983;">Original For Recipient</p>
+          </div>
+        </header>
+
+        <section class="invoice-meta-grid">
+          <div class="meta-box">
+            <h3>Invoice & Order Details</h3>
+            <p><strong>Invoice No:</strong> INV-${order.id.replace('ORD-', '')}</p>
+            <p><strong>Order ID:</strong> ${order.id}</p>
+            <p><strong>Order Date:</strong> ${orderDate}</p>
+            <p><strong>Order Status:</strong> <span style="font-weight:700; color:#173d98;">${order.status || 'Pending'}</span></p>
+          </div>
+
+          <div class="meta-box">
+            <h3>Billed & Shipped To</h3>
+            <p><strong>${order.customer?.name || 'Valued Customer'}</strong></p>
+            <p>${order.customer?.address || ''}</p>
+            <p>${order.customer?.city || ''}${order.customer?.state ? ', ' + order.customer?.state : ''} - ${order.customer?.zip || ''}</p>
+            <p><strong>Phone:</strong> ${order.customer?.phone || '-'}</p>
+            <p><strong>Email:</strong> ${order.customer?.email || '-'}</p>
+          </div>
+
+          <div class="meta-box">
+            <h3>Payment Information</h3>
+            <p><strong>Method:</strong> ${order.payment?.method || 'Online Pay'}</p>
+            <p><strong>Payment Status:</strong> <span style="color:#1f6a45; font-weight:700;">${order.payment?.status || 'Paid'}</span></p>
+            ${order.payment?.reference ? `<p><strong>Ref / UPI:</strong> ${order.payment.reference}</p>` : ''}
+          </div>
+        </section>
+
+        <table class="invoice-table">
+          <thead>
+            <tr>
+              <th style="width:40px;">#</th>
+              <th>Description (Item & SKU)</th>
+              <th style="width:70px; text-align:center;">Qty</th>
+              <th style="width:110px; text-align:right;">Unit Price</th>
+              <th style="width:120px; text-align:right;">Amount (INR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsRows}
+          </tbody>
+        </table>
+
+        <div class="invoice-calc-row">
+          <div class="calc-table">
+            <div>
+              <span>Items Subtotal:</span>
+              <span>₹${subtotal.toLocaleString('en-IN')}</span>
+            </div>
+            <div>
+              <span>CGST (2.5%):</span>
+              <span>₹${cgst.toLocaleString('en-IN')}</span>
+            </div>
+            <div>
+              <span>SGST (2.5%):</span>
+              <span>₹${sgst.toLocaleString('en-IN')}</span>
+            </div>
+            <div>
+              <span>Shipping & Delivery:</span>
+              <span>${shipping > 0 ? '₹' + shipping : '<strong style="color:#1f6a45;">FREE</strong>'}</span>
+            </div>
+            <div class="grand-total">
+              <span>Grand Total:</span>
+              <span style="color:#173d98;">₹${total.toLocaleString('en-IN')}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="amount-words-box">
+          <strong>Amount in Words:</strong> Indian Rupees ${numToWords(total)} Only
+        </div>
+
+        <footer class="invoice-footer">
+          <div>
+            <p><strong>Terms & Conditions:</strong></p>
+            <p style="margin:2px 0;">• Handcrafted sarees are handled with care. 7 days exchange available for unstitched sarees.</p>
+            <p style="margin:2px 0;">• For return or exchange inquiries, contact support via WhatsApp at +91 8945998947.</p>
+            <p style="margin:6px 0 0 0; color:#701625; font-weight:700;">Thank you for your celebration order with The Moharani!</p>
+          </div>
+          <div class="auth-signature">
+            <div style="font-family:'Cinzel',serif; font-size:1.1rem; color:#701625; font-weight:700;">The Moharani</div>
+            <div class="signature-line">Authorized Signatory</div>
+          </div>
+        </footer>
+      `;
+    }
+
+    function shareOnWhatsApp() {
+      const url = window.location.href;
+      const text = encodeURIComponent(`The Moharani Order Tax Invoice: ${url}`);
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
+    document.addEventListener("DOMContentLoaded", loadInvoiceData);
+  </script>
+</body>
+</html>

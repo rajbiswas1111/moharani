@@ -1,0 +1,271 @@
+{
+  "users": [
+    {
+      "id": "admin-1",
+      "name": "Moharani Admin",
+      "email": "admin@themoharani.com",
+      "role": "admin",
+      "passwordHash": "scrypt$fdc29fb4e7dbae2389cb8fa7f6c44200$b70a548595b66b8855a7567b593b748b8a67b00e04ec8b6956b184fae3fb9d3624d5f45bdd388f9990dcf1de6ba2e6aabd870166ef002ca7587197e62ac423a7"
+    },
+    {
+      "id": "user-1",
+      "name": "Priya Sharma",
+      "email": "customer@themoharani.com",
+      "role": "customer",
+      "passwordHash": "scrypt$6e38a92c64ae590df3c8644848e49252$6c097460a0e2eb094ba67e714d6c32673a329f9f841bce84cd17886828590f5116a45076e30de102e3d7b133d75b3d19b030ef81177914a7613feda7f6be9588"
+    },
+    {
+      "id": "user-1778056123601",
+      "name": "Sajib",
+      "email": "cuteboybappa2@gmail.com",
+      "passwordHash": "scrypt$c6fe993be566345801b7fc951a998701$0ac07bc598a28afb3d6e8c8329b1b7ecfa66a58dc2e14a3c1d0decf8178657ad5196cbb11dbfdaeb86fb76c53d398ba3f0114784c41ae0cabd191ee9c07da925",
+      "phone": "8945998948",
+      "avatar": "",
+      "address": "",
+      "city": "",
+      "state": "",
+      "zip": "",
+      "role": "customer"
+    }
+  ],
+  "products": [
+    {
+      "id": "TM001",
+      "name": "Royal Banarasi Silk Saree",
+      "category": "Party",
+      "fabric": "Pure Silk",
+      "price": 8499,
+      "oldPrice": 9999,
+      "stock": 11,
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1610030469061-66850a8279f2?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80"
+      ],
+      "badge": "Best Seller",
+      "shortDescription": "Luxurious zari work with rich bridal detailing.",
+      "description": "Crafted for grand celebrations, this Banarasi silk saree blends heritage weaving, premium zari motifs, and a regal drape for wedding and festive occasions."
+    },
+    {
+      "id": "TM002",
+      "name": "Kanchipuram Temple Border Saree",
+      "category": "Festive",
+      "fabric": "Kanchipuram Silk",
+      "price": 7299,
+      "oldPrice": 8299,
+      "stock": 11,
+      "featured": true,
+      "image": "/uploads/tm002.jpg",
+      "gallery": [
+        "/uploads/tm002_gal_0.jpg"
+      ],
+      "badge": "New Arrival",
+      "shortDescription": "Classic gold temple border with vibrant body tones.",
+      "description": "A timeless Kanchipuram saree with a ceremonial temple border, hand-finished texture, and elegant pallu for festive dressing."
+    },
+    {
+      "id": "TM003",
+      "name": "Soft Linen Printed Saree",
+      "category": "Daily Wear",
+      "fabric": "Linen Blend",
+      "price": 2499,
+      "oldPrice": 2999,
+      "stock": 22,
+      "featured": false,
+      "image": "/uploads/tm003_main.jpg",
+      "gallery": [
+        "/uploads/tm003_gal_0.jpg"
+      ],
+      "badge": "Lightweight",
+      "shortDescription": "Breathable comfort with elegant floral printing.",
+      "description": "Designed for day-long ease, this linen blend saree offers soft texture, subtle prints, and versatile styling for office and casual wear."
+    },
+    {
+      "id": "TM004",
+      "name": "Chiffon Partywear Saree",
+      "category": "Party",
+      "fabric": "Chiffon",
+      "price": 3999,
+      "oldPrice": 4699,
+      "stock": 18,
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1610189020382-66837d3e6d43?auto=format&fit=crop&w=900&q=80"
+      ],
+      "badge": "Trending",
+      "shortDescription": "Flowy silhouette with sequin-highlighted pallu.",
+      "description": "An effortless partywear pick featuring fluid chiffon drape, subtle shimmer accents, and a polished evening-ready finish."
+    },
+    {
+      "id": "TM005",
+      "name": "Cotton Handloom Saree",
+      "category": "wedding",
+      "fabric": "Handloom Cotton",
+      "price": 2199,
+      "oldPrice": 2599,
+      "stock": 30,
+      "featured": false,
+      "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80"
+      ],
+      "badge": "Everyday Essential",
+      "shortDescription": "Handloom comfort with elegant contrast stripes.",
+      "description": "A breathable cotton handloom saree built for all-day wear, featuring artisanal weaving and understated elegance for work and daytime events."
+    },
+    {
+      "id": "TM006",
+      "name": "Designer Georgette Saree",
+      "category": "Reception",
+      "fabric": "Georgette",
+      "price": 5599,
+      "oldPrice": 6499,
+      "stock": 16,
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+      "gallery": [
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
+        "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80"
+      ],
+      "badge": "Premium",
+      "shortDescription": "Contemporary designer drape with embellished blouse piece.",
+      "description": "Modern georgette styling with graceful fall, embellished details, and versatile elegance for receptions and curated evening looks."
+    },
+    {
+      "id": "Kerala c Wh",
+      "name": "Kerala Cotton saree",
+      "category": "Daily Wear",
+      "fabric": "Cotton",
+      "price": 350,
+      "oldPrice": 600,
+      "stock": 49,
+      "featured": false,
+      "image": "/uploads/saree_1788798877738_65cf642a.png",
+      "gallery": [
+        "/uploads/saree_1788798877738_65cf642a.png",
+        "/uploads/saree_1788798877877_7469c125.png"
+      ],
+      "badge": "New Arrival",
+      "shortDescription": "Kerala Cotton saree",
+      "description": "Kerala Cotton saree"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-1788798976029",
+      "createdAt": "2026-09-07T16:36:16.029Z",
+      "userId": "admin-1",
+      "customer": {
+        "name": "Moharani Admin",
+        "email": "admin@themoharani.com",
+        "phone": "91 81260 71724",
+        "address": "jfgdf",
+        "city": "ddvd",
+        "state": "vgvdbf",
+        "zip": "741741"
+      },
+      "payment": {
+        "method": "Cash on Delivery",
+        "status": "Pending",
+        "reference": ""
+      },
+      "status": "Pending",
+      "items": [
+        {
+          "productId": "Kerala c Wh",
+          "name": "Kerala Cotton saree",
+          "image": "/uploads/saree_1788798877738_65cf642a.png",
+          "price": 350,
+          "quantity": 1,
+          "lineTotal": 350
+        }
+      ],
+      "subtotal": 350,
+      "shipping": 149,
+      "tax": 18,
+      "total": 517
+    },
+    {
+      "id": "ORD-1788796106932",
+      "createdAt": "2026-09-07T15:48:26.932Z",
+      "userId": "user-1",
+      "customer": {
+        "name": "Priya Sharma",
+        "email": "customer@themoharani.com",
+        "phone": "567532542543",
+        "address": "jfgdf",
+        "city": "ddvd",
+        "state": "vgvdbf",
+        "zip": "741741"
+      },
+      "payment": {
+        "method": "Online Pay (WhatsApp)",
+        "status": "Pending Confirmation",
+        "reference": ""
+      },
+      "status": "Ready to Ship",
+      "items": [
+        {
+          "productId": "TM001",
+          "name": "Royal Banarasi Silk Saree",
+          "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+          "price": 8499,
+          "quantity": 1,
+          "lineTotal": 8499
+        }
+      ],
+      "subtotal": 8499,
+      "shipping": 0,
+      "tax": 425,
+      "total": 8924
+    },
+    {
+      "id": "ORD-1778056228148",
+      "createdAt": "2026-05-06T08:30:28.148Z",
+      "userId": "user-1778056123601",
+      "customer": {
+        "name": "Sajib",
+        "email": "cuteboybappa2@gmail.com",
+        "phone": "8945998947",
+        "address": "safd",
+        "city": "krishnanagar",
+        "state": "West Bengal",
+        "zip": "741102"
+      },
+      "payment": {
+        "method": "Cash on Delivery",
+        "status": "Paid",
+        "reference": "s"
+      },
+      "status": "Cancelled",
+      "items": [
+        {
+          "productId": "TM001",
+          "name": "Royal Banarasi Silk Saree",
+          "image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80",
+          "price": 8499,
+          "quantity": 2,
+          "lineTotal": 16998
+        }
+      ],
+      "subtotal": 16998,
+      "shipping": 0,
+      "tax": 850,
+      "total": 17848
+    }
+  ],
+  "settings": {
+    "brandName": "The Moharani",
+    "supportEmail": "sbfashion4553@gmail.com",
+    "supportPhone": "+91 98765 43210",
+    "address": "India"
+  }
+}
